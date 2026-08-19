@@ -8,5 +8,5 @@ const separated = Object.groupBy(data, ({ subject }) => subject);
 
 Ensuite il faut crée une nouvelle table pour chaque sujet dynamiquement dans app.js
 ```js
-Object.entries(separated).forEach(([subjectName, grades]) => { ... }
+Object.entries(separated).forEach(([subjectName, grades]) => { ... })
 ```
