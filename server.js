@@ -16,6 +16,7 @@ db.serialize(() => {
     db.run(`
         CREATE TABLE IF NOT EXISTS subjects (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            semestre INT,
             name TEXT NOT NULL UNIQUE
         )
     `);
@@ -33,7 +34,7 @@ db.serialize(() => {
 /// Grades ///
 app.get('/grades', (req, res) => {
     db.all(`
-        SELECT grades.id, score, subject_id, subjects.name AS subject
+        SELECT grades.id, score, subject_id, subjects.semestre AS semestre, subjects.name AS subject
         FROM grades
         LEFT JOIN subjects ON subjects.id = grades.subject_id
     `, [], (err, rows) => {
@@ -83,11 +84,11 @@ app.get('/subjects', (req, res) => {
 });
 
 app.post('/subjects', (req, res) => {
-    const { name } = req.body;
+    const { name, semestre } = req.body;
 
     db.run(
-        'INSERT INTO subjects (name) VALUES (?)',
-        [name],
+        'INSERT INTO subjects (name, semestre) VALUES (?, ?)',
+        [name, semestre],
         function () {
             res.json({ id: this.lastID });
         }

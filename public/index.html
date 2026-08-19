@@ -20,7 +20,8 @@
     <button onclick="addGrade()">Ajouter</button>
 </div>
 <div class="form">
-    <input id="newSubject" placeholder="New subject">
+    <input id="newSubject" placeholder="New subject" required>
+    <input id="newSemestre" placeholder="New semester" required>
     <button onclick="addSubject()">Ajouter un module</button>
 </div>
 <table>
@@ -35,6 +36,19 @@
     <tbody id="table"></tbody>
 </table>
 
+
+<table>
+    <thead>
+        <tr>
+            <th>Semestre 1</th>
+            <th>Semestre 2</th>
+            <th>Annuelle</th>
+        </tr>
+    </thead>
+    <tbody id="averages">
+
+    </tbody>
+</table>
 <script src="app.js"></script>
 </body>
 </html>
